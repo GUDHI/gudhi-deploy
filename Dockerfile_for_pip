@@ -11,7 +11,7 @@ RUN yum -y update && yum -y install \
 
 RUN mkdir -p /opt/cmake \
     && curl -LO "https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.sh" \
-    && sh cmake-3.16.2-Linux-x86_64.sh  --skip-license \
+    && sh cmake-3.16.2-Linux-x86_64.sh  --skip-license --prefix=/opt/cmake \
     && rm -f cmake-3.16.2-Linux-x86_64.sh
 
 # yum install boost-devel installs boost 1.53 and copy is the only way to install headers only boost
@@ -25,7 +25,7 @@ RUN curl -LO "https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0
     && rm -rf boost
 
 ADD install_cgal.sh /
-RUN sh install_cgal.sh
+RUN chmod +x install_cgal.sh && ./install_cgal.sh
 
 ADD build-requirements.txt /
 
