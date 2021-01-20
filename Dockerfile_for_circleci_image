@@ -62,4 +62,4 @@ ADD install_cgal.sh /
 RUN sh install_cgal.sh
 
 # apt clean up
-RUN apt autoremove && rm -rf /var/lib/apt/lists/*
+RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
