@@ -72,7 +72,7 @@ RUN pip3 install \
 # apt clean up
 RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-ARG GUDHI_VERSION="3.4.0"
+ARG GUDHI_VERSION="3.4.1"
 
 RUN curl -LO "https://github.com/GUDHI/gudhi-devel/releases/download/tags%2Fgudhi-release-${GUDHI_VERSION}/gudhi.${GUDHI_VERSION}.tar.gz" \
 && tar xf gudhi.${GUDHI_VERSION}.tar.gz \
