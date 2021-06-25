@@ -1,5 +1,5 @@
 setuptools
 wheel
-numpy
+numpy>=1.15.0
 Cython
 pybind11

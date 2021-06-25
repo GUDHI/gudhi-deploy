@@ -3,6 +3,7 @@ pytest-cov
 sphinx
 sphinxcontrib-bibtex
 sphinx-paramlinks
+python-docs-theme
 matplotlib
 scipy
 scikit-learn
