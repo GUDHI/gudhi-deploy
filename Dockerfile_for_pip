@@ -29,18 +29,18 @@ RUN chmod +x install_cgal.sh && ./install_cgal.sh
 
 ADD build-requirements.txt /
 
-RUN /opt/python/cp35-cp35m/bin/python -m pip install -r build-requirements.txt \
-    && /opt/python/cp36-cp36m/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp37-cp37m/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp38-cp38/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp39-cp39/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp39-cp39/bin/python -m pip install twine
+RUN /opt/python/cp36-cp36m/bin/pip install twine\
+    && /opt/python/cp36-cp36m/bin/pip install -r build-requirements.txt\
+    && /opt/python/cp37-cp37m/bin/pip install -r build-requirements.txt\
+    && /opt/python/cp38-cp38/bin/pip install -r build-requirements.txt\
+    && /opt/python/cp39-cp39/bin/pip install -r build-requirements.txt\
+    && /opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
 
-ENV PYTHON35="/opt/python/cp35-cp35m/"
 ENV PYTHON36="/opt/python/cp36-cp36m/"
 ENV PYTHON37="/opt/python/cp37-cp37m/"
 ENV PYTHON38="/opt/python/cp38-cp38/"
 ENV PYTHON39="/opt/python/cp39-cp39/"
+ENV PYTHON310="/opt/python/cp310-cp310/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
 ENV PATH="/opt/rh/devtoolset-8/root/usr/bin:${PATH}"
