@@ -1,5 +1,5 @@
 setuptools
 wheel
 numpy>=1.15.0
-Cython
+Cython>=0.27
 pybind11
