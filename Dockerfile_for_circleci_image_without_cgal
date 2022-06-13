@@ -1,5 +1,5 @@
 # Builds gudhi/ci_for_gudhi_wo_cgal on Docker Hub
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
