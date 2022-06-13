@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
@@ -29,7 +29,7 @@ RUN apt-get install -y make \
     pkg-config \
     curl
 
-ARG CGAL_VERSION="5.3.1"
+ARG CGAL_VERSION="5.4.1"
 
 RUN curl -LO "https://github.com/CGAL/cgal/releases/download/v${CGAL_VERSION}/CGAL-${CGAL_VERSION}.tar.xz" \
     && tar xf CGAL-${CGAL_VERSION}.tar.xz \
@@ -51,7 +51,7 @@ RUN pip3 install \
 # apt clean up
 RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-ARG GUDHI_VERSION="3.4.1"
+ARG GUDHI_VERSION="3.5.0"
 
 RUN curl -LO "https://github.com/GUDHI/gudhi-devel/releases/download/tags%2Fgudhi-release-${GUDHI_VERSION}/gudhi.${GUDHI_VERSION}.tar.gz" \
 && tar xf gudhi.${GUDHI_VERSION}.tar.gz \
