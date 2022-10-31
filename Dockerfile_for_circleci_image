@@ -1,13 +1,12 @@
 # Builds gudhi/ci_for_gudhi on Docker Hub
 FROM ubuntu:22.04
 
-RUN apt-get update
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Required for Gudhi compilation
-RUN apt-get install -y make \
+RUN apt update && apt install -y make \
     git \
     g++ \
     cmake \
@@ -28,11 +27,7 @@ RUN pip3 install -r build-requirements.txt
 RUN pip3 --no-cache-dir install -r test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image_without_cgal
-RUN apt-get install -y graphviz \
-    texlive-full \
-    biber \
-    doxygen \
-    libeigen3-dev \
+RUN apt install -y libeigen3-dev \
     libgmp3-dev \
     libmpfr-dev \
     libtbb-dev
@@ -41,4 +36,4 @@ ADD install_cgal.sh /
 RUN sh install_cgal.sh
 
 # apt clean up
-RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
+RUN apt autoremove && rm -rf /var/lib/apt/lists/*
