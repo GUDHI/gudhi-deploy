@@ -5,7 +5,7 @@ sphinxcontrib-bibtex
 sphinx-paramlinks
 python-docs-theme
 matplotlib
-scipy<1.9.0
+scipy>=1.6.0
 scikit-learn
 POT
 tensorflow
