@@ -1,11 +1,11 @@
 # Builds gudhi/ci_for_gudhi on Docker Hub
 FROM ubuntu:22.04
 
-RUN apt-get update
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update
 # Required for Gudhi compilation
 RUN apt-get install -y make \
     git \
@@ -14,7 +14,8 @@ RUN apt-get install -y make \
     graphviz \
     texlive-full \
     biber \
-    doxygen
+    doxygen \
+    latexmk
 
 # apt clean up
 RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
