@@ -35,12 +35,14 @@ RUN /opt/python/cp36-cp36m/bin/pip install twine\
     && /opt/python/cp38-cp38/bin/pip install -r build-requirements.txt\
     && /opt/python/cp39-cp39/bin/pip install -r build-requirements.txt\
     && /opt/python/cp310-cp310/bin/pip install -r build-requirements.txt
+    && /opt/python/cp311-cp311/bin/pip install -r build-requirements.txt
 
 ENV PYTHON36="/opt/python/cp36-cp36m/"
 ENV PYTHON37="/opt/python/cp37-cp37m/"
 ENV PYTHON38="/opt/python/cp38-cp38/"
 ENV PYTHON39="/opt/python/cp39-cp39/"
 ENV PYTHON310="/opt/python/cp310-cp310/"
+ENV PYTHON311="/opt/python/cp311-cp311/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
 ENV PATH="/opt/rh/devtoolset-8/root/usr/bin:${PATH}"
