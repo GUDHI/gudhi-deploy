@@ -3,7 +3,7 @@ pytest-cov
 sphinx<5.0.0
 sphinxcontrib-bibtex
 sphinx-paramlinks
-python-docs-theme
+python-docs-theme<2022.1
 matplotlib
 scipy>=1.6.0
 scikit-learn
