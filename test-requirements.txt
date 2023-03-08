@@ -1,9 +1,9 @@
 pytest
 pytest-cov
-sphinx<5.0.0
+sphinx
 sphinxcontrib-bibtex
 sphinx-paramlinks
-python-docs-theme<2022.1
+pydata-sphinx-theme
 matplotlib
 scipy>=1.6.0
 scikit-learn
