@@ -19,26 +19,26 @@ login:
 	docker login
 
 build_circleci:
-	docker build -t gudhi/ci_for_gudhi -f Dockerfile_for_circleci_image .
-	docker build -t gudhi/doxygen_for_gudhi -f Dockerfile_for_doxygen_circleci_image .
-	docker build -t gudhi/ci_for_gudhi_wo_cgal -f Dockerfile_for_circleci_image_without_cgal .
+	docker build -t gudhi/ci_for_gudhi:latest -f Dockerfile_for_circleci_image .
+	docker build -t gudhi/doxygen_for_gudhi:latest -f Dockerfile_for_doxygen_circleci_image .
+	docker build -t gudhi/ci_for_gudhi_wo_cgal:latest -f Dockerfile_for_circleci_image_without_cgal .
 
 build_pip:
-	docker build -t gudhi/pip_for_gudhi -f Dockerfile_for_pip .
+	docker build -t gudhi/pip_for_gudhi:latest -f Dockerfile_for_pip .
 
 build_latest:
 	docker build -t gudhi/latest_gudhi_version -f Dockerfile_for_gudhi_installation .
 
 push_circleci:
-	docker push gudhi/ci_for_gudhi
-	docker push gudhi/doxygen_for_gudhi
-	docker push gudhi/ci_for_gudhi_wo_cgal
+	docker push gudhi/ci_for_gudhi:latest
+	docker push gudhi/doxygen_for_gudhi:latest
+	docker push gudhi/ci_for_gudhi_wo_cgal:latest
 
 push_pip:
-	docker push gudhi/pip_for_gudhi
+	docker push gudhi/pip_for_gudhi:latest
 
 push_latest:
-	docker push gudhi/latest_gudhi_version
+	docker push gudhi/latest_gudhi_version:latest
 
 circleci: build_circleci login push_circleci
 
