@@ -3,3 +3,4 @@ wheel
 numpy>=1.15.0
 Cython>=0.27
 pybind11>=2.6
+build
