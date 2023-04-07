@@ -6,7 +6,6 @@ RUN yum -y update && yum -y install \
     eigen3-devel \
     mpfr-devel \
     gmp-devel \
-    devtoolset-8 \
     && yum clean all
 
 RUN mkdir -p /opt/cmake \
@@ -45,4 +44,4 @@ ENV PYTHON310="/opt/python/cp310-cp310/"
 ENV PYTHON311="/opt/python/cp311-cp311/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
-ENV PATH="/opt/rh/devtoolset-8/root/usr/bin:${PATH}"
+ENV PATH="/opt/rh/devtoolset-10/root/usr/bin:${PATH}"
