@@ -30,26 +30,23 @@ ADD build-requirements.txt /
 
 # gudhi requires numpy >= 1.15.0, but minimal numpy version for python 3.8 is 1.17.3 for instance
 # numpy~=1.17.3 means any numpy=1.17.*, but also numpy>=1.17.3 (numpy~=1.17 do not work as it means any numpy==1.*)
-RUN /opt/python/cp36-cp36m/bin/python -m pip install numpy~=1.15.0\
-    && /opt/python/cp36-cp36m/bin/python -m pip install twine\
-    && /opt/python/cp36-cp36m/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp37-cp37m/bin/python -m pip install numpy~=1.15.0\
-    && /opt/python/cp37-cp37m/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp38-cp38/bin/python -m pip install numpy~=1.17.3\
+RUN /opt/python/cp38-cp38/bin/python -m pip install numpy~=1.17.3\
+    && /opt/python/cp38-cp38/bin/python -m pip install twine\
     && /opt/python/cp38-cp38/bin/python -m pip install -r build-requirements.txt\
     && /opt/python/cp39-cp39/bin/python -m pip install numpy~=1.19.3\
     && /opt/python/cp39-cp39/bin/python -m pip install -r build-requirements.txt\
     && /opt/python/cp310-cp310/bin/python -m pip install numpy~=1.21.6\
     && /opt/python/cp310-cp310/bin/python -m pip install -r build-requirements.txt\
     && /opt/python/cp311-cp311/bin/python -m pip install numpy~=1.23.2\
-    && /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt
+    && /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt\
+    && /opt/python/cp312-cp312/bin/python -m pip install numpy~=1.26.0\
+    && /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt
 
-ENV PYTHON36="/opt/python/cp36-cp36m/"
-ENV PYTHON37="/opt/python/cp37-cp37m/"
 ENV PYTHON38="/opt/python/cp38-cp38/"
 ENV PYTHON39="/opt/python/cp39-cp39/"
 ENV PYTHON310="/opt/python/cp310-cp310/"
 ENV PYTHON311="/opt/python/cp311-cp311/"
+ENV PYTHON312="/opt/python/cp311-cp312/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
 ENV PATH="/opt/rh/devtoolset-10/root/usr/bin:${PATH}"
