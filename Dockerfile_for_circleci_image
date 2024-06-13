@@ -23,8 +23,8 @@ RUN apt update && apt install -y make \
 ADD build-requirements.txt /
 ADD test-requirements.txt /
 
-RUN pip3 install -r build-requirements.txt
-RUN pip3 --no-cache-dir install -r test-requirements.txt
+RUN python3 -m pip install --user -r build-requirements.txt
+RUN python3 -m pip --no-cache-dir install --user -r test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image_without_cgal
 RUN apt install -y libeigen3-dev \

@@ -23,12 +23,12 @@ RUN apt update && apt install -y make \
 ADD build-requirements.txt /
 ADD test-requirements.txt /
 
-RUN pip3 install -r build-requirements.txt
-RUN pip3 --no-cache-dir install -r test-requirements.txt
+RUN python3 -m pip install --user -r build-requirements.txt
+RUN python3 -m pip --no-cache-dir install --user -r test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image
-RUN curl -LO "https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz" \
-    && tar xf eigen-3.3.9.tar.gz
+RUN curl -LO "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz" \
+    && tar xf eigen-3.4.0.tar.gz
 
 # apt clean up
 RUN apt autoremove && rm -rf /var/lib/apt/lists/*
