@@ -30,17 +30,19 @@ ADD build-requirements.txt /
 
 # gudhi requires numpy >= 1.15.0, but minimal numpy version for python 3.8 is 1.17.3 for instance
 # numpy~=1.17.3 means any numpy=1.17.*, but also numpy>=1.17.3 (numpy~=1.17 do not work as it means any numpy==1.*)
+# For python >=3.9, numpy >= 2.0 for package build and ABI compatibility with numpy 1.X and 2.X
+# cf. https://numpy.org/doc/stable/dev/depending_on_numpy.html#numpy-2-0-specific-advice
 RUN /opt/python/cp38-cp38/bin/python -m pip install numpy~=1.17.3\
-    && /opt/python/cp38-cp38/bin/python -m pip install twine\
-    && /opt/python/cp38-cp38/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp39-cp39/bin/python -m pip install numpy~=1.19.3\
-    && /opt/python/cp39-cp39/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp310-cp310/bin/python -m pip install numpy~=1.21.6\
-    && /opt/python/cp310-cp310/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp311-cp311/bin/python -m pip install numpy~=1.23.2\
-    && /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt\
-    && /opt/python/cp312-cp312/bin/python -m pip install numpy~=1.26.0\
-    && /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt
+&& /opt/python/cp38-cp38/bin/python -m pip install twine\
+&& /opt/python/cp38-cp38/bin/python -m pip install -r build-requirements.txt\
+&& /opt/python/cp39-cp39/bin/python -m pip install numpy>=2.0\
+&& /opt/python/cp39-cp39/bin/python -m pip install -r build-requirements.txt\
+&& /opt/python/cp310-cp310/bin/python -m pip install numpy>=2.0\
+&& /opt/python/cp310-cp310/bin/python -m pip install -r build-requirements.txt\
+&& /opt/python/cp311-cp311/bin/python -m pip install numpy>=2.0\
+&& /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt\
+&& /opt/python/cp312-cp312/bin/python -m pip install numpy>=2.0\
+&& /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt
 
 ENV PYTHON38="/opt/python/cp38-cp38/"
 ENV PYTHON39="/opt/python/cp39-cp39/"
