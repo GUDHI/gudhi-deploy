@@ -3,6 +3,7 @@ pytest-cov
 sphinx
 sphinxcontrib-bibtex
 sphinx-paramlinks
+sphinx-autodoc-typehints
 pydata-sphinx-theme>=0.8.0
 matplotlib
 scipy>=1.6.0
