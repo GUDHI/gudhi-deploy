@@ -1,5 +1,5 @@
 # Builds gudhi/ci_for_gudhi_wo_cgal on Docker Hub
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
@@ -13,18 +13,20 @@ RUN apt update && apt install -y make \
     perl \
     libboost-all-dev \
     python3 \
-    python3-pip \
-    python3-tk \
-    python3-grpcio \
-    libfreetype6-dev \
-    pkg-config \
+    python3-venv \
+    xz-utils \
     curl
 
-ADD build-requirements.txt /
-ADD test-requirements.txt /
+# PEP668: work in a virtual environment
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN python3 -m pip install --user -r build-requirements.txt
-RUN python3 -m pip --no-cache-dir install --user -r test-requirements.txt
+RUN mkdir /home/ubuntu/install
+ADD build-requirements.txt /home/ubuntu/install/
+ADD test-requirements.txt /home/ubuntu/install/
+RUN python -m pip install -r /home/ubuntu/install/build-requirements.txt
+RUN python -m pip install -r /home/ubuntu/install/test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image
 RUN curl -LO "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz" \
