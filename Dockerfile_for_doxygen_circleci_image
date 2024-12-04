@@ -1,5 +1,5 @@
 # Builds gudhi/ci_for_gudhi on Docker Hub
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
