@@ -42,13 +42,16 @@ RUN /opt/python/cp38-cp38/bin/python -m pip install numpy~=1.17.3\
 && /opt/python/cp311-cp311/bin/python -m pip install numpy>=2.0\
 && /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt\
 && /opt/python/cp312-cp312/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt
+&& /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt\
+&& /opt/python/cp313-cp313/bin/python -m pip install numpy>=2.0\
+&& /opt/python/cp313-cp313/bin/python -m pip install -r build-requirements.txt
 
 ENV PYTHON38="/opt/python/cp38-cp38/"
 ENV PYTHON39="/opt/python/cp39-cp39/"
 ENV PYTHON310="/opt/python/cp310-cp310/"
 ENV PYTHON311="/opt/python/cp311-cp311/"
 ENV PYTHON312="/opt/python/cp312-cp312/"
+ENV PYTHON313="/opt/python/cp313-cp313/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
 ENV PATH="/opt/rh/gcc-toolset-13/root/usr/bin:${PATH}"
