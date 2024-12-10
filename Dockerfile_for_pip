@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux2014_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
 
 RUN yum -y update && yum -y install \
     curl \
@@ -54,4 +54,4 @@ ENV PYTHON312="/opt/python/cp312-cp312/"
 ENV PYTHON313="/opt/python/cp313-cp313/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
-ENV PATH="/opt/rh/devtoolset-10/root/usr/bin:${PATH}"
+ENV PATH="/opt/rh/gcc-toolset-13/root/usr/bin:${PATH}"
