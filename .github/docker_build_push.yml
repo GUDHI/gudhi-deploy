@@ -1,0 +1,41 @@
+name: Docker Build and Push
+
+on:
+  workflow_call:
+    inputs:
+      dockerfile-path:
+        required: true
+        type: string
+      docker-image-name:
+        required: true
+        type: string
+      image-tag:
+        required: true
+        type: string
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Repository name in lower cases
+        run: echo "REPO=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Build image ${{ inputs.docker-image-name }}:${{ inputs.image-tag }} from ${{ inputs.dockerfile-path }}
+        run: docker build -f ${{ inputs.dockerfile-path }} -t ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }} .
+
+      - name: Push image ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}
+        run: docker push ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}

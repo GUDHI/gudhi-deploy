@@ -6,32 +6,10 @@ on:
       - "*"
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract tag name
-        id: extract_tag
-        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-
-      - name: Build doxygen docker image
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}/doxygen_for_gudhi:${{ env.TAG }} -f Dockerfile_for_doxygen_circleci_image .
-
-      - name: Push doxygen docker image
-        run: |
-          docker push ghcr.io/${{ github.repository }}/doxygen_for_gudhi:${{ env.TAG }}
+  jobs:
+    doxygen-docker-build:
+      uses: ./.github/docker_build_push.yml
+      with:
+        dockerfile-path: Dockerfile_for_doxygen_circleci_image
+        docker-image-name: doxygen_for_gudhi
+        image-tag: ${GITHUB_REF#refs/tags/}
