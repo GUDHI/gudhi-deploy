@@ -6,10 +6,9 @@ on:
       - "*"
 
 jobs:
-  jobs:
-    doxygen-docker-build:
-      uses: ./.github/docker_build_push.yml
-      with:
-        dockerfile-path: Dockerfile_for_doxygen_circleci_image
-        docker-image-name: doxygen_for_gudhi
-        image-tag: ${GITHUB_REF#refs/tags/}
+  doxygen-docker-build:
+    uses: ./.github/docker_build_push.yml
+    with:
+      dockerfile-path: Dockerfile_for_doxygen_circleci_image
+      docker-image-name: doxygen_for_gudhi
+      image-tag: ${GITHUB_REF#refs/tags/}
