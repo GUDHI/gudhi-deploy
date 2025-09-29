@@ -6,10 +6,9 @@ on:
       - "Dockerfile_for_gudhi_installation"
 
 jobs:
-  jobs:
-    doxygen-docker-build:
-      uses: ./.github/docker_build_push.yml
-      with:
-        dockerfile-path: Dockerfile_for_gudhi_installation
-        docker-image-name: latest_gudhi_version
-        image-tag: ${GITHUB_SHA::8}
+  gudhi-installation-docker-build:
+    uses: ./.github/docker_build_push.yml
+    with:
+      dockerfile-path: Dockerfile_for_gudhi_installation
+      docker-image-name: latest_gudhi_version
+      image-tag: ${GITHUB_SHA::8}
