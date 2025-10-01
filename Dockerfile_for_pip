@@ -31,17 +31,17 @@ ADD build-requirements.txt /
 # gudhi requires numpy >= 1.15.0, but for python >=3.9, numpy >= 2.0 is advised for package build
 # and ABI compatibility with numpy 1.X and 2.X
 # cf. https://numpy.org/doc/stable/dev/depending_on_numpy.html#numpy-2-0-specific-advice
-RUN /opt/python/cp39-cp39/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp39-cp39/bin/python -m pip install twine\
-&& /opt/python/cp39-cp39/bin/python -m pip install -r build-requirements.txt\
-&& /opt/python/cp310-cp310/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp310-cp310/bin/python -m pip install -r build-requirements.txt\
-&& /opt/python/cp311-cp311/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp311-cp311/bin/python -m pip install -r build-requirements.txt\
-&& /opt/python/cp312-cp312/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp312-cp312/bin/python -m pip install -r build-requirements.txt\
-&& /opt/python/cp313-cp313/bin/python -m pip install numpy>=2.0\
-&& /opt/python/cp313-cp313/bin/python -m pip install -r build-requirements.txt
+RUN /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir twine\
+&& /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
+&& /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
+&& /opt/python/cp311-cp311/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp311-cp311/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
+&& /opt/python/cp312-cp312/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp312-cp312/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
+&& /opt/python/cp313-cp313/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp313-cp313/bin/python -m pip install --no-cache-dir -r build-requirements.txt
 
 ENV PYTHON39="/opt/python/cp39-cp39/"
 ENV PYTHON310="/opt/python/cp310-cp310/"
