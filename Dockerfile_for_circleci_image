@@ -6,7 +6,7 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Required for Gudhi compilation
-RUN apt update && apt install -y make \
+RUN apt-get update && apt-get install -y make \
     git \
     g++ \
     cmake \
@@ -25,11 +25,11 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN mkdir /home/ubuntu/install
 ADD build-requirements.txt /home/ubuntu/install/
 ADD test-requirements.txt /home/ubuntu/install/
-RUN python -m pip install -r /home/ubuntu/install/build-requirements.txt
-RUN python -m pip install -r /home/ubuntu/install/test-requirements.txt
+RUN python -m pip install --no-cache-dir -r /home/ubuntu/install/build-requirements.txt
+RUN python -m pip install --no-cache-dir -r /home/ubuntu/install/test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image_without_cgal
-RUN apt install -y libeigen3-dev \
+RUN apt-get install -y libeigen3-dev \
     libgmp3-dev \
     libmpfr-dev \
     libtbb-dev
@@ -38,4 +38,4 @@ ADD install_cgal.sh /home/ubuntu/install/
 RUN sh /home/ubuntu/install/install_cgal.sh
 
 # apt clean up
-RUN apt autoremove && rm -rf /var/lib/apt/lists/* && rm -rf /home/ubuntu/install
+RUN apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /home/ubuntu/install

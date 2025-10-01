@@ -6,7 +6,7 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Required for Gudhi compilation
-RUN apt update && apt install -y make \
+RUN apt-get update && apt-get install -y make \
     git \
     g++ \
     cmake \
@@ -17,4 +17,4 @@ RUN apt update && apt install -y make \
     latexmk
 
 # apt clean up
-RUN apt-get autoremove && rm -rf /var/lib/apt/lists/*
+RUN apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
