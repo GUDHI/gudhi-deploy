@@ -38,4 +38,6 @@ jobs:
         run: docker build -f ${{ inputs.dockerfile-path }} -t ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }} .
 
       - name: Push image ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}
-        run: docker push ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}
+        run: |
+          docker push ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}
+          docker image ls ghcr.io/${{ env.REPO }}/${{ inputs.docker-image-name }}:${{ inputs.image-tag }}

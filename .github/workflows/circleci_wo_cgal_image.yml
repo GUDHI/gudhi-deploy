@@ -11,4 +11,4 @@ jobs:
     with:
       dockerfile-path: Dockerfile_for_circleci_image_without_cgal
       docker-image-name: ci_for_gudhi_wo_cgal
-      image-tag: ${GITHUB_REF#refs/tags/}
+      image-tag: ${{ github.ref_name }}

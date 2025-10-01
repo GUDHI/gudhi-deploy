@@ -11,4 +11,4 @@ jobs:
     with:
       dockerfile-path: Dockerfile_for_doxygen_circleci_image
       docker-image-name: doxygen_for_gudhi
-      image-tag: ${GITHUB_REF#refs/tags/}
+      image-tag: ${{ github.ref_name }}
