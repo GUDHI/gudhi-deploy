@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux_2_28_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64:2026.02.13-1
 
 RUN yum -y update && yum -y install \
     curl \
@@ -14,40 +14,40 @@ RUN mkdir -p /opt/cmake \
     && rm -f cmake-3.16.2-Linux-x86_64.sh
 
 # yum install boost-devel installs boost 1.53 and copy is the only way to install headers only boost
-RUN curl -LO "https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz" \
-    && tar xf boost_1_87_0.tar.gz \
-    && cd boost_1_87_0 \
+RUN curl -LO "https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz" \
+    && tar xf boost_1_90_0.tar.gz \
+    && cd boost_1_90_0 \
     && ./bootstrap.sh \
     && ls \
     && cp -r boost /usr/local/include/ \
     && cd .. \
     && rm -rf boost
 
-ADD install_cgal.sh /
+COPY install_cgal.sh /
 RUN chmod +x install_cgal.sh && ./install_cgal.sh
 
-ADD build-requirements.txt /
+COPY build-requirements.txt /
 
-# gudhi requires numpy >= 1.15.0, but for python >=3.9, numpy >= 2.0 is advised for package build
+# gudhi requires numpy >= 1.15.0, but for python >=3.10, numpy >= 2.0 is advised for package build
 # and ABI compatibility with numpy 1.X and 2.X
 # cf. https://numpy.org/doc/stable/dev/depending_on_numpy.html#numpy-2-0-specific-advice
-RUN /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir numpy>=2.0\
-&& /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir twine\
-&& /opt/python/cp39-cp39/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
-&& /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir numpy>=2.0\
+RUN /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir twine\
 && /opt/python/cp310-cp310/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
 && /opt/python/cp311-cp311/bin/python -m pip install --no-cache-dir numpy>=2.0\
 && /opt/python/cp311-cp311/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
 && /opt/python/cp312-cp312/bin/python -m pip install --no-cache-dir numpy>=2.0\
 && /opt/python/cp312-cp312/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
 && /opt/python/cp313-cp313/bin/python -m pip install --no-cache-dir numpy>=2.0\
-&& /opt/python/cp313-cp313/bin/python -m pip install --no-cache-dir -r build-requirements.txt
+&& /opt/python/cp313-cp313/bin/python -m pip install --no-cache-dir -r build-requirements.txt\
+&& /opt/python/cp314-cp314/bin/python -m pip install --no-cache-dir numpy>=2.0\
+&& /opt/python/cp314-cp314/bin/python -m pip install --no-cache-dir -r build-requirements.txt
 
-ENV PYTHON39="/opt/python/cp39-cp39/"
 ENV PYTHON310="/opt/python/cp310-cp310/"
 ENV PYTHON311="/opt/python/cp311-cp311/"
 ENV PYTHON312="/opt/python/cp312-cp312/"
 ENV PYTHON313="/opt/python/cp313-cp313/"
+ENV PYTHON314="/opt/python/cp314-cp314/"
 
 ENV PATH="/opt/cmake/bin:${PATH}"
 ENV PATH="/opt/rh/gcc-toolset-13/root/usr/bin:${PATH}"
