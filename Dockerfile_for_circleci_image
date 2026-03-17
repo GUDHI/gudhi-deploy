@@ -25,8 +25,8 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN mkdir /home/ubuntu/install
 COPY build-requirements.txt /home/ubuntu/install/
 COPY test-requirements.txt /home/ubuntu/install/
-RUN python -m pip install --no-cache-dir -r /home/ubuntu/install/build-requirements.txt
-RUN python -m pip install --no-cache-dir -r /home/ubuntu/install/test-requirements.txt
+RUN python -m pip install -r /home/ubuntu/install/build-requirements.txt
+RUN python -m pip install -r /home/ubuntu/install/test-requirements.txt
 
 # Try to do the same layers as Dockerfile_for_circle_ci_image_without_cgal
 RUN apt-get install --no-install-recommends -y libeigen3-dev \
