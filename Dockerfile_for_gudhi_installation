@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
@@ -41,7 +41,7 @@ RUN python -m pip install \
 # apt clean up
 RUN apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ARG GUDHI_VERSION="3.11.0"
+ARG GUDHI_VERSION="3.13.0"
 
 RUN curl -LO "https://github.com/GUDHI/gudhi-devel/releases/download/tags%2Fgudhi-release-${GUDHI_VERSION}/gudhi.${GUDHI_VERSION}.tar.gz" \
 && tar xf gudhi.${GUDHI_VERSION}.tar.gz \
