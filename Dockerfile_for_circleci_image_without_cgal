@@ -1,5 +1,6 @@
 # Builds gudhi/ci_for_gudhi_wo_cgal on Docker Hub
-FROM ubuntu:26.04
+# ubuntu:26.04 installs python 3.14 - No tensorflow version for python 3.14
+FROM ubuntu:24.04
 
 # DEBIAN_FRONTEND=noninteractive is used to prevent installation of
 # package tzdata to ask for timezone
