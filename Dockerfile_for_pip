@@ -10,13 +10,11 @@ RUN yum -y update && yum -y install \
 
 # yum install boost-devel installs boost 1.53 and copy is the only way to install headers only boost
 RUN curl -LO "https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz" \
-    && tar xf boost_1_90_0.tar.gz \
-    && cd boost_1_90_0 \
-    && ./bootstrap.sh \
-    && ls \
-    && cp -r boost /usr/local/include/ \
-    && cd .. \
-    && rm -rf boost
+      && tar xzf boost_1_90_0.tar.gz \
+      && cd boost_1_90_0 \
+      && ./bootstrap.sh --prefix=/usr/local \
+      && ./b2 install --prefix=/usr/local -j$(nproc) --with-headers \
+      && cd .. && rm -rf boost_1_90_0 boost_1_90_0.tar.gz
 
 COPY install_cgal.sh /
 RUN chmod +x install_cgal.sh && ./install_cgal.sh
